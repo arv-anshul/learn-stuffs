@@ -7,6 +7,9 @@ Using this repo I am learning some essential things about **git**.
 - [x] Publishing python project on `pypi` website using **Github Actions**.
 - [ ] Code formatting and linting with **Github Actions**.
 - [x] How to use **pre-commit hooks**?
+- [ ] Learn `tox` for python project.
+- [ ] Learn `cookiecutter` to develop [ml-project-template](https://github.com/arv-anshul/ml-project-template) project.
+- [ ] Learn how to use `Makefile`.
 
 ## 🧑‍🏫 Learn `pre-commit`
 
