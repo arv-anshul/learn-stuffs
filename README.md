@@ -9,7 +9,7 @@ Using this repo I am learning some essential things about **git**.
 - [x] How to use **pre-commit hooks**?
 - [ ] Learn `tox` for python project.
 - [ ] Learn `cookiecutter` to develop [ml-project-template](https://github.com/arv-anshul/ml-project-template) project.
-- [ ] Learn how to use `Makefile`.
+- [x] Learn how to use `Makefile`.
 
 ## 🧑‍🏫 Learn `pre-commit`
 
@@ -78,3 +78,11 @@ pre-commit run
 7. Finally, if `pre-commit` get some issue in your code while committing then it will print those in your console right away. And then you can fix them manually and commit those fixes into the repository.
 
 > 📄 If you want more information about **`pre-commit`** read [this blog](https://dev.to/techishdeep/maximize-your-python-efficiency-with-pre-commit-a-complete-but-concise-guide-39a5).
+
+## 🧑‍🏫 Learn `Makefile`
+
+Check this [Makefile](Makefile) which I copied and configured for my own purpose.
+
+This is a amazing yet confusing (for the beginners) way to automate and to improve your experience regarding repetitive tasks. You have to just define many sequential command in the find and assign a good name to it and then run `make awesome-name` as command in your terminal and boom you get all your work done in a go.
+
+> Copied from [this blog](https://dev.to/mmphego/why-you-should-add-makefile-into-your-python-project-20j2).
