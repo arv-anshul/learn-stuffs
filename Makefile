@@ -1,15 +1,15 @@
 .ONESHELL:
 
 SHELL := /bin/bash
-DATE_ID := $(shell date +"%y.%m.%d")
+
 # Get package name from pwd
-PACKAGE_NAME := $(shell basename $(shell dirname $(realpath $(lastword $(MAKEFILE_LIST)))))
+PACKAGE_NAME := $(shell pwd)  # works for (mac | linux)
 .DEFAULT_GOAL := help
 
 # UPDATE ME
 PYTHON_VENV = .venv
 MAIN_FILE = src/main.py
-# STREAMLIT_APP = app.py  # This file must be a streamlit app
+STREAMLIT_APP = app.py  # This file must be a streamlit app
 MAX_LINE_LENGTH = 88  # Variable for formatters
 
 define PRINT_HELP_PYSCRIPT
@@ -56,11 +56,10 @@ help:
 
 bootstrap: clean gitignore install-hooks venv ## Installs development packages, hooks, create venv
 
-gitignore:
+gitignore:  ## Create .gitignore file for pyhton project
 	curl -sL https://www.gitignore.io/api/venv,python,JupyterNotebooks,VisualStudioCode >> .gitignore
 
-venv-dev: venv ## Install the package in development mode including all dependencies inside a virtualenv (container).
-	@make venv $(PYTHON_VENV)
+venv-dev: venv  ## Install the package in dev mode including all dependencies inside a virtualenv.
 	$(PYTHON_VENV) -m pip install .[dev];
 
 venv:  ## Create a new virtual environment, with default name '.venv'.
@@ -70,18 +69,17 @@ venv:  ## Create a new virtual environment, with default name '.venv'.
 	echo -e "\033[1;32m$$\033[0m \033[31msource $(PYTHON_VENV)/bin/activate\033[0m"; \
 
 # ---------------------------------- Python Packaging ------------------------------------
-dist: clean ## Builds source and wheel package
-	$(PYTHON) setup.py sdist
-	$(PYTHON) setup.py bdist_wheel
-	ls -l dist
+dist: setup.py clean  ## Builds source and wheel package
+	$(PYTHON) $< sdist
+	$(PYTHON) $< bdist_wheel
 
 # -------------------------------------- Project Execution -------------------------------
 
 run: $(MAIN_FILE)  ## Run Python app
-	@$(PYTHON) $(MAIN_FILE)
+	@$(PYTHON) $<
 
-streamlit: $(STREAMLIT_APP)
-	@streamlit run $(STREAMLIT_APP)
+streamlit: $(STREAMLIT_APP)  ## Run streamlit app (First define the STREAMLIT_APP variable in Makefile)
+	@streamlit run $<
 
 # -------------------------------------- Clean Up  --------------------------------------
 .PHONY: clean
